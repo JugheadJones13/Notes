@@ -30,5 +30,6 @@ root_page_table = 0x80817000
 rpt_minus_1_t0 = 0x80818000    //rpt_minus_x_ty: x refers depth of tree. x = 0 refers to root.
 rpt_minus_1_t1 = 0x80819000    //y refers to node number in level "x".
 // rpt_minus_1_t0 & rpt_minus_1_t1 are leaf nodes in the page walk since we use 2MB pages.
-// if pte(RWX) = 0 (all bits 0) then it is a pointer pte node else it is a leaf node.
+// if the R,W,X bits in a pte entry are all 0 then it is a pointer pte node else it is a leaf node. (PTE_V should be set)
 ```
+As of this point, the entire physical memory is mapped to the kernel.
