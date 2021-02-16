@@ -17,4 +17,8 @@ So, the first_free_page = 0x80017000. DRAM start address is 0x80000000. DRAM is 
 ```c
 sizeof(struct freelist_node_t) = 16; //in bytes.
 ```  
-Hence freelist_node_array_size = (16 x num_freelist_nodes) = 0x800 physical pages.
+Hence, freelist_node_array_size = (16 x num_freelist_nodes) = 0x800 physical pages. The first page allocated is for the root_page_table.  
+```c
+root_page_table = 0x80017000 + (0x800 x 0x1000) = 0x80817000
+```
+The address of root_page_table is written into the sptbr CSR.
