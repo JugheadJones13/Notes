@@ -1,3 +1,5 @@
+This page is a writeup of some of the stuff I learnt from reading the [riscv-pk](https://github.com/riscv/riscv-pk) repository. This writeup is meant as a journal of what I have learnt and it does not guarantee correctness. I suggest going through the original code to clarify any queries that may arise.
+
 Riscv supports different page sizes like 4KB,2MB etc. Pages of both sizes can be simultaneously present.
 ```c
 #define ROUNDDOWN(a, b) ((a)/(b)*(b))              //floor(a/b) x b
