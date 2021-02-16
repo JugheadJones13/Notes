@@ -17,4 +17,4 @@ So, the first_free_page = 0x80017000. DRAM start address is 0x80000000. DRAM is 
 ```c
 sizeof(struct freelist_node_t) = 16; //in bytes.
 ```  
-Hence freelist_node_array_size = 16 x num_freelist_nodes which equals 0x800 physical pages.
+Hence freelist_node_array_size = (16 x num_freelist_nodes) = 0x800 physical pages.
