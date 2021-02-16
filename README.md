@@ -23,5 +23,12 @@ root_page_table = 0x80017000 + (0x800 x 0x1000) = 0x80817000
 ```
 The address of root_page_table is written into the sptbr csr.  
 
-#### __map_kernel_range  
-In the virtual address space of a user process, addresses starting from 0x80000000 to 0x100000000 are reserved for kernel region. The user space is from 0x0 to 0x80000000. Hence we do a flat map (virtual addr = physical addr) for the kernel region.
+#### \_\_map_kernel_range  
+In the virtual address space of a user process, addresses starting from 0x80000000 to 0x100000000 are reserved for kernel region. The user space is from 0x0 to 0x80000000. Hence we do a flat map (virtual addr = physical addr) for the kernel region. Also the kernel region page size is 2MB and not 4KB.
+```c
+root_page_table = 0x80817000
+rpt_minus_1_t0 = 0x80818000    //rpt_minus_x_ty: x refers depth of tree. x = 0 refers to root.
+rpt_minus_1_t1 = 0x80819000    //y refers to node number in level "x".
+// rpt_minus_1_t0 & rpt_minus_1_t1 are leaf nodes in the page walk since we use 2MB pages.
+// if pte(RWX) = 0 (all bits 0) then it is a pointer pte node else it is a leaf node.
+```
