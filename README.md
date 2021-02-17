@@ -32,4 +32,9 @@ rpt_minus_1_t1 = 0x80819000    //y refers to node number in level "x".
 // rpt_minus_1_t0 & rpt_minus_1_t1 are leaf nodes in the page walk since we use 2MB pages.
 // if the R,W,X bits in a pte entry are all 0 then it is a pointer pte node else it is a leaf node. (PTE_V should be set)
 ```
-As of this point, the entire physical memory is mapped to the kernel.
+As of this point, the entire physical memory is mapped to the kernel.  
+
+#### xv6 operating system  
+On xv6, the kernel maps the entire physical memory into its address space starting at 0x80000000. Thus, virtual address (0x80000000+x) always translates to physical address x. Thus every page that is accessible by the user also has a mapping in the kernel's address space. Thus two entries in the page table point to the same physical page (one in the kernel-space, and another in the user-space).  
+This is similarly followed in riscv-pk as well.
+
