@@ -21,7 +21,7 @@ Hence, freelist_node_array_size = (16 x num_freelist_nodes) = 0x800 physical pag
 ```c
 root_page_table = 0x80017000 + (0x800 x 0x1000) = 0x80817000
 ```
-The address of root_page_table is written into the sptbr csr.  
+The address of root_page_table is written into the sptbr csr. This function returns the kernel stack top address.
 
 #### \_\_map_kernel_range  
 In the virtual address space of a user process, addresses starting from 0x80000000 to 0x100000000 are reserved for kernel region. The user space is from 0x0 to 0x80000000. Hence we do a flat map (virtual addr = physical addr) for the kernel region. Also the kernel region page size is 2MB and not 4KB.
