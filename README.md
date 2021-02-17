@@ -1,5 +1,8 @@
 This page is a writeup of some of the stuff I learnt from reading the [riscv-pk](https://github.com/riscv/riscv-pk) repository. This writeup is meant as a journal of what I have learnt and it does not guarantee correctness. I suggest going through the original code to clarify any queries that may arise.
-
+### Setup
+* Clone the [riscv-gnu-toolchain](https://github.com/riscv/riscv-gnu-toolchain) repo. Follow the Newlib installation procedure in the Readme
+* Install [riscv-isa-sim](https://github.com/riscv/riscv-isa-sim). Install [riscv-pk](https://github.com/riscv/riscv-pk). Make sure the $PATH environment variable includes the path to the gnu-toolchain compilers that you previously installed.
+* \./configure --help gives list of all possible options. prefix option tells where to install.  
 Riscv supports different page sizes like 4KB,2MB etc. Pages of both sizes can be simultaneously present.
 ```c
 #define ROUNDDOWN(a, b) ((a)/(b)*(b))              //floor(a/b) x b
@@ -13,6 +16,11 @@ Static keyword restricts the scope of a variable to the file it is defined in. B
 ```c
 0b1000 && 0b1000 = 0b0001
 0b1000 & 0b1000 = 0b1000
+```
+##### left shift count >= width of type
+```c
+uint64_t a = (1 << 35);     //uint64_t in stdint.h, 1 is 32 bit int. 1 << 35 cannot be stored (overflow).
+uint64_t a = (1UL << 35);   //this works
 ```
 
 #### pk_vm_init()  
