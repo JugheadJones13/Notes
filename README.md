@@ -22,6 +22,10 @@ Static keyword restricts the scope of a variable to the file it is defined in. B
 uint64_t a = (1 << 35);     //uint64_t in stdint.h, 1 is 32 bit int. 1 << 35 cannot be stored (overflow).
 uint64_t a = (1UL << 35);   //this works
 ```
+##### GDB
+```
+set print elements 0 //Display full string
+```
 
 #### pk_vm_init()  
 All \*.c files are compiled to \*.o files which are linked to produce the "pk" executable. \&\_end is the address of the end of all sections in pk executable. The max address in the final executable is 0x800160d8. ROUNDUP(0x800160d8,RISCV_PGSIZE) gives 0x80017000 which is the address of \_end.
