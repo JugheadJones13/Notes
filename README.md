@@ -36,5 +36,22 @@ As of this point, the entire physical memory is mapped to the kernel.
 
 #### xv6 operating system  
 On xv6, the kernel maps the entire physical memory into its address space starting at 0x80000000. Thus, virtual address (0x80000000+x) always translates to physical address x. Thus every page that is accessible by the user also has a mapping in the kernel's address space. Thus two entries in the page table point to the same physical page (one in the kernel-space, and another in the user-space).  
-This is similarly followed in riscv-pk as well.
+This is similarly followed in riscv-pk as well.  
+
+#### \_\_page\_alloc()\
+It returns a physical address which is the start of a new physical frame in memory. The page returned is zeroed.
+
+#### vmrs and \_\_do_mmap\
+In kernel space there is a page dedicated to holding an array of vmr struct objects. When I do a mmap syscall, I just update a free entry in the vmrs array without actually allocating physical memory. When I reference it, I will get a page fault and then I will allocate the memory. This is called demand paging.
+```c
+void *mmap(void *addr, size_t length, int prot, int flags, int fd, off_t offset);
+```
+Check out [man page](https://man7.org/linux/man-pages/man2/mmap.2.html). Flags supported are the following:
+```c
+MAP_PRIVATE - creates a COW map of file. Changes to mapping are not visible to other processes mapping the same page and not propogated to the file in disk
+MAP_FIXED - addr argument is not a hint. Place it at that address. addr has to be page aligned. Preexisting mapping at that addr are munmapped.
+MAP_ANONYMOUS - contents are not backed by any file. It is initialized to zero. fd and offset should be 0.
+MAP_POPULATE
+MREMAP_FIXED
+```
 
