@@ -22,6 +22,8 @@ Static keyword restricts the scope of a variable to the file it is defined in. B
 uint64_t a = (1 << 35);     //uint64_t in stdint.h, 1 is 32 bit int. 1 << 35 cannot be stored (overflow).
 uint64_t a = (1UL << 35);   //this works
 ```
+##### Padding and Packing in C
+
 ##### GDB
 ```
 set print elements 0 //Display full string
