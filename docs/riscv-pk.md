@@ -8,27 +8,6 @@ Riscv supports different page sizes like 4KB,2MB etc. Pages of both sizes can be
 #define ROUNDDOWN(a, b) ((a)/(b)*(b))              //floor(a/b) x b
 #define ROUNDUP(a, b) ((((a)-1)/(b)+1)*(b))        //ceil(a/b) x b
 ```
-### Aside
-##### Global static variables  
-Static keyword restricts the scope of a variable to the file it is defined in. By default global variables are extern, meaning I can define a global variable in A.c and then say "extern var" in B.c and use it in B.c. Same applies to static functions as well.
-##### Bitwise and logical operators
-"& | ^ ~" are bitwise operators while "&& || !" are logical operators
-```c
-0b1000 && 0b1000 = 0b0001
-0b1000 & 0b1000 = 0b1000
-```
-##### left shift count >= width of type
-```c
-uint64_t a = (1 << 35);     //uint64_t in stdint.h, 1 is 32 bit int. 1 << 35 cannot be stored (overflow).
-uint64_t a = (1UL << 35);   //this works
-```
-##### Padding and Packing in C
-
-##### GDB
-```
-set print elements 0 //Display full string
-```
-
 #### pk_vm_init()  
 All \*.c files are compiled to \*.o files which are linked to produce the "pk" executable. \&\_end is the address of the end of all sections in pk executable. The max address in the final executable is 0x800160d8. ROUNDUP(0x800160d8,RISCV_PGSIZE) gives 0x80017000 which is the address of \_end.
 ```asm
