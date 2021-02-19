@@ -1,2 +1,5 @@
 ### C and C++  
-Hello This is C & C++ page
+The nm command gives the symbol table.
+```bash
+nm a.out
+```
