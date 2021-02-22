@@ -3,7 +3,7 @@ Individual steps in the compilation process are:
 1. Preprocessor: expands macros, directives etc (like #define)
 2. Compiler: compiles the source code into assembly file (.s file)
 3. Assembler: creates object file from .s files.
-4. Linker: Takes obj file and returns executable.
+4. Linker: Takes obj file and returns executable.  
 ```c
 long global_symbol[2];
 
