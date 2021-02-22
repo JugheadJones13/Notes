@@ -9,7 +9,7 @@ Riscv supports different page sizes like 4KB,2MB etc. Pages of both sizes can be
 #define ROUNDUP(a, b) ((((a)-1)/(b)+1)*(b))        //ceil(a/b) x b
 ```
 #### pk_vm_init()  
-All \*.c files are compiled to \*.o files which are linked to produce the "pk" executable. \&\_end is the address of the end of all sections in pk executable. The max address in the final executable is 0x800160d8. ROUNDUP(0x800160d8,RISCV_PGSIZE) gives 0x80017000 which is the address of \_end.
+All \*.c files are compiled to \*.o files which are linked to produce the "pk" executable. &\_end is the address of the end of all sections in pk executable. The max address in the final executable is 0x800160d8. ROUNDUP(0x800160d8,RISCV_PGSIZE) gives 0x80017000 which is the address of \_end.
 ```asm
 riscv64-unknown-elf-objdump -D pk | less
 ```
